@@ -1,0 +1,21 @@
+# dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# env files
+.env
+.env.local
+.env*.local
+
+# large media
+public/*.mp4
+public/*.mov
+public/*.avi
+
+# misc
+.DS_Store
+*.pem
+npm-debug.log*

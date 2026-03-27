@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #ff9f1c;
+  --primary-2: #ffd166;
+  --secondary: #1e3a8a;
+  --line: rgba(255, 255, 255, 0.12);
+  --card: rgba(255, 255, 255, 0.08);
+  --card-2: rgba(255, 255, 255, 0.06);
+  --muted: #cbd5e1;
+  --text: #f8fafc;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at 15% 10%, rgba(255, 159, 28, 0.18), transparent 32%),
+    radial-gradient(circle at 85% 5%, rgba(30, 58, 138, 0.25), transparent 28%),
+    linear-gradient(180deg, #111827 0%, #0f172a 55%, #0b1120 100%);
+  min-height: 100vh;
+  color: var(--text);
+}
+
+@layer components {
+  /* Shared pill badge */
+  .pill {
+    @apply inline-flex items-center gap-2 px-3.5 py-2 border border-white/[0.12] text-[0.92rem] text-white rounded-full;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+  }
+
+  /* Shared card surface */
+  .card {
+    @apply border border-white/[0.12] rounded-[22px] p-6;
+    background: var(--card);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  }
+
+  /* Primary gradient button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-4 rounded-full font-extrabold text-[#111827] transition-transform hover:-translate-y-px;
+    background: linear-gradient(135deg, var(--primary-2), var(--primary));
+    box-shadow: 0 15px 40px rgba(255, 159, 28, 0.28);
+  }
+
+  /* Ghost / secondary button */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-4 rounded-full font-extrabold text-white border border-white/[0.16] transition-transform hover:-translate-y-px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+  }
+
+  /* Max-width content wrapper */
+  .container {
+    width: min(1180px, calc(100% - 40px));
+    margin-inline: auto;
+  }
+
+  /* Section heading row */
+  .section-head {
+    @apply flex justify-between items-end gap-4 mb-5;
+  }
+
+  .section-head h2 {
+    @apply text-[clamp(1.8rem,3vw,2.7rem)] m-0 tracking-tight;
+  }
+
+  .section-head p {
+    @apply m-0 max-w-[54ch] leading-relaxed;
+    color: var(--muted);
+  }
+
+  /* Form inputs */
+  .field-input {
+    @apply w-full border border-white/10 rounded-2xl px-4 py-3.5 font-sans text-white outline-none focus:border-white/25 transition-colors;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .field-input::placeholder {
+    color: #6b7280;
+  }
+}

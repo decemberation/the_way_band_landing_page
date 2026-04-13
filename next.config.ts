@@ -39,6 +39,14 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "v5.airtableusercontent.com",
+      },
+    ],
+  },
   async headers() {
     return [
       {

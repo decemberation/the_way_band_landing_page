@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 
 const navLinks = [
@@ -14,9 +15,11 @@ export default function Nav() {
       <div className="container flex items-center justify-between py-3">
         {/* Brand */}
         <a href="#">
-          <img
+          <Image
             src="/logo.svg"
             alt="The Way Band"
+            width={120}
+            height={48}
             className="h-12 w-auto flex-shrink-0"
           />
         </a>

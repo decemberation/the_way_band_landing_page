@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getEvents } from "@/lib/airtable";
 
 const gradientBg = "radial-gradient(circle at 70% 20%, rgba(255,209,102,.45), transparent 18%), radial-gradient(circle at 25% 80%, rgba(255,159,28,.35), transparent 28%), linear-gradient(135deg, #1e1e3a, #2d2d5a 100%)";
@@ -31,10 +32,11 @@ export default async function Events() {
                   }}
                 >
                   {event.thumbnail && (
-                    <img
+                    <Image
                       src={event.thumbnail}
                       alt={event.title}
-                      className="absolute inset-0 w-full h-full object-cover"
+                      fill
+                      className="object-cover"
                     />
                   )}
                   {/* Overlay for readability */}

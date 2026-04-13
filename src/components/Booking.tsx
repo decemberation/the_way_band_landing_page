@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 const inputClass = "border border-[#d4cfc7] rounded-xl px-4 py-3 text-[#1a1a1a] placeholder:text-[#aaa] outline-none focus:border-[#1e1e3a] transition-colors bg-[#faf8f5]";
@@ -49,8 +50,8 @@ export default function Booking() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
 
           {/* Photo */}
-          <div className="rounded-2xl overflow-hidden h-[320px] lg:h-auto lg:max-h-[420px]">
-            <img src="/please_book.jpg" alt="The Way Band performing" className="w-full h-full object-cover" />
+          <div className="relative rounded-2xl overflow-hidden h-[320px] lg:h-auto lg:max-h-[420px]">
+            <Image src="/please_book.jpg" alt="The Way Band performing" fill className="object-cover" />
           </div>
 
           {/* Form */}

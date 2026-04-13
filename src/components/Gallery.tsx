@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const photos = [
   "/gphoto_1.jpg",
   "/gphoto_2.jpg",
@@ -19,23 +21,23 @@ export default function Gallery() {
 
         {/* Desktop: 2fr 1fr 1fr grid */}
         <div className="hidden md:grid grid-cols-[2fr_1fr_1fr] gap-4">
-          <div className="min-h-[496px] rounded-2xl overflow-hidden">
-            <img src={photos[0]} alt="Gallery 1" className="w-full h-full object-cover" />
+          <div className="relative min-h-[496px] rounded-2xl overflow-hidden">
+            <Image src={photos[0]} alt="Gallery 1" fill className="object-cover" />
           </div>
           <div className="flex flex-col gap-4">
-            <div className="flex-1 min-h-[240px] rounded-2xl overflow-hidden">
-              <img src={photos[1]} alt="Gallery 2" className="w-full h-full object-cover" />
+            <div className="relative flex-1 min-h-[240px] rounded-2xl overflow-hidden">
+              <Image src={photos[1]} alt="Gallery 2" fill className="object-cover" />
             </div>
-            <div className="flex-1 min-h-[240px] rounded-2xl overflow-hidden">
-              <img src={photos[2]} alt="Gallery 3" className="w-full h-full object-cover" />
+            <div className="relative flex-1 min-h-[240px] rounded-2xl overflow-hidden">
+              <Image src={photos[2]} alt="Gallery 3" fill className="object-cover" />
             </div>
           </div>
           <div className="flex flex-col gap-4">
-            <div className="flex-1 min-h-[240px] rounded-2xl overflow-hidden">
-              <img src={photos[3]} alt="Gallery 4" className="w-full h-full object-cover" />
+            <div className="relative flex-1 min-h-[240px] rounded-2xl overflow-hidden">
+              <Image src={photos[3]} alt="Gallery 4" fill className="object-cover" />
             </div>
-            <div className="flex-1 min-h-[240px] rounded-2xl overflow-hidden">
-              <img src={photos[4]} alt="Gallery 5" className="w-full h-full object-cover" />
+            <div className="relative flex-1 min-h-[240px] rounded-2xl overflow-hidden">
+              <Image src={photos[4]} alt="Gallery 5" fill className="object-cover" />
             </div>
           </div>
         </div>
@@ -43,8 +45,8 @@ export default function Gallery() {
         {/* Mobile: single column */}
         <div className="md:hidden grid gap-4">
           {photos.map((src, i) => (
-            <div key={i} className="rounded-2xl overflow-hidden min-h-[260px]">
-              <img src={src} alt={`Gallery ${i + 1}`} className="w-full h-full object-cover" />
+            <div key={i} className="relative rounded-2xl overflow-hidden min-h-[260px]">
+              <Image src={src} alt={`Gallery ${i + 1}`} fill className="object-cover" />
             </div>
           ))}
         </div>

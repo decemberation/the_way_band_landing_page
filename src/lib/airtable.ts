@@ -28,7 +28,19 @@ export async function getEvents(): Promise<AirtableEvent[]> {
 
   const data = await res.json();
 
-  return data.records.map((record: any) => {
+  interface AirtableRecord {
+    id: string;
+    fields: {
+      Title?: string;
+      Date?: string;
+      Location?: string;
+      Badge?: string;
+      Description?: string;
+      Thumbnail?: { url: string }[];
+    };
+  }
+
+  return data.records.map((record: AirtableRecord) => {
     const f = record.fields;
     return {
       id: record.id,

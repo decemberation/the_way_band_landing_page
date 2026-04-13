@@ -1,28 +1,10 @@
-const events = [
-  {
-    badge: "Featured Collaboration",
-    title: "NASA × The Way",
-    date: "Mar 16",
-    location: "San Jose, CA",
-    desc: "A collaborative live music night with a cinematic black-and-gold event style.",
-  },
-  {
-    badge: "Private Event",
-    title: "Golden Hour Session",
-    date: "Apr 12",
-    location: "Bay Area",
-    desc: "Warm acoustic-forward performance concept for celebrations and intimate gatherings.",
-  },
-  {
-    badge: "Community Night",
-    title: "Voices of San Jose",
-    date: "May 03",
-    location: "Downtown SJ",
-    desc: "Prototype slot for a future showcase, fundraiser, or local cultural event.",
-  },
-];
+import { getEvents } from "@/lib/airtable";
 
-export default function Events() {
+const gradientBg = "radial-gradient(circle at 70% 20%, rgba(255,209,102,.45), transparent 18%), radial-gradient(circle at 25% 80%, rgba(255,159,28,.35), transparent 28%), linear-gradient(135deg, #1e1e3a, #2d2d5a 100%)";
+
+export default async function Events() {
+  const events = await getEvents();
+
   return (
     <section id="events" className="py-16 bg-white">
       <div className="container">
@@ -33,37 +15,52 @@ export default function Events() {
           Upcoming Events
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {events.map(({ badge, title, date, location, desc }) => (
-            <article key={title} className="bg-[#f5f0e8] rounded-2xl overflow-hidden">
-              {/* Poster */}
-              <div
-                className="relative"
-                style={{
-                  aspectRatio: "16/10",
-                  background:
-                    "radial-gradient(circle at 70% 20%, rgba(255,209,102,.45), transparent 18%), radial-gradient(circle at 25% 80%, rgba(255,159,28,.35), transparent 28%), linear-gradient(135deg, #1e1e3a, #2d2d5a 100%)",
-                }}
-              >
-                <div className="absolute inset-x-4 bottom-4">
-                  <small className="inline-block px-2.5 py-1 mb-2 rounded-full text-[0.78rem] bg-white/20 text-white border border-white/20">
-                    {badge}
-                  </small>
-                  <h3 className="m-0 text-[1.2rem] font-bold text-white leading-tight">{title}</h3>
+        {events.length === 0 ? (
+          <p className="text-[#6b6b6b]">No upcoming events at the moment. Check back soon!</p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {events.map((event) => (
+              <article key={event.id} className="bg-[#f5f0e8] rounded-2xl overflow-hidden">
+                {/* Poster */}
+                <div
+                  className="relative"
+                  style={{
+                    aspectRatio: "16/10",
+                    background: gradientBg,
+                    ...(event.thumbnail ? {} : {}),
+                  }}
+                >
+                  {event.thumbnail && (
+                    <img
+                      src={event.thumbnail}
+                      alt={event.title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  )}
+                  {/* Overlay for readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute inset-x-4 bottom-4 z-10">
+                    {event.badge && (
+                      <small className="inline-block px-2.5 py-1 mb-2 rounded-full text-[0.78rem] bg-white/20 text-white border border-white/20">
+                        {event.badge}
+                      </small>
+                    )}
+                    <h3 className="m-0 text-[1.2rem] font-bold text-white leading-tight">{event.title}</h3>
+                  </div>
                 </div>
-              </div>
 
-              {/* Body */}
-              <div className="px-5 py-4">
-                <div className="flex justify-between text-[0.88rem] text-[#6b6b6b] mb-2.5 font-medium">
-                  <span>{date}</span>
-                  <span>{location}</span>
+                {/* Body */}
+                <div className="px-5 py-4">
+                  <div className="flex justify-between text-[0.88rem] text-[#6b6b6b] mb-2.5 font-medium">
+                    <span>{event.date ? new Date(event.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : ""}</span>
+                    <span>{event.location}</span>
+                  </div>
+                  <p className="m-0 text-[#3a3a3a] leading-relaxed text-[0.95rem]">{event.description}</p>
                 </div>
-                <p className="m-0 text-[#3a3a3a] leading-relaxed text-[0.95rem]">{desc}</p>
-              </div>
-            </article>
-          ))}
-        </div>
+              </article>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

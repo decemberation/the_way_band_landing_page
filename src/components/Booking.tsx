@@ -96,7 +96,7 @@ export default function Booking() {
               >
                 {status === "loading" ? "Sending..." : "Send Inquiry"}
               </button>
-              {status === "success" && <p className="text-green-600 text-sm font-medium">Sent! We'll be in touch soon.</p>}
+              {status === "success" && <p className="text-green-600 text-sm font-medium">Sent! We&apos;ll be in touch soon.</p>}
               {status === "error" && <p className="text-red-500 text-sm font-medium">{errorMsg}</p>}
             </div>
 

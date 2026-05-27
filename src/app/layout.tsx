@@ -13,14 +13,14 @@ export const metadata: Metadata = {
   description:
     "Young Vietnamese musicians based in San Jose, CA. Book The Way Band for concerts, private events, celebrations, and community nights.",
   icons: {
-    icon: "/logo.svg",
-    apple: "/logo.svg",
+    icon: "/twe-logo.png",
+    apple: "/twe-logo.png",
   },
   openGraph: {
     title: "The Way Band",
     description:
       "Young Vietnamese musicians based in San Jose, CA. Book The Way Band for concerts, private events, celebrations, and community nights.",
-    images: [{ url: "/logo.svg" }],
+    images: [{ url: "/twe-logo.png" }],
   },
 };
 

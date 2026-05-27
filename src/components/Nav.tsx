@@ -16,7 +16,7 @@ export default function Nav() {
         {/* Brand */}
         <a href="#">
           <Image
-            src="/logo.svg"
+            src="/twe-logo.png"
             alt="The Way Band"
             width={120}
             height={48}

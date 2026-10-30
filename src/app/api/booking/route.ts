@@ -75,8 +75,8 @@ export async function POST(req: NextRequest) {
   }
 
   const { error } = await resend.emails.send({
-    from: "onboarding@resend.dev",
-    to: "peronguyen2510@gmail.com",
+    from: "The Way Bookings <booking@thewayexp.com>",
+    to: ["peronguyen2510@gmail.com", "info@thewayexp.com"],
     subject: `New Booking Inquiry from ${name}`,
     html: `
       <h2>New Booking Inquiry</h2>
